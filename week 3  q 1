@@ -1,13 +1,39 @@
 #include <iostream>
-#include <cmath>
+#include <string>
 using namespace std;
 
+class BankAccount {
+public:
+    int accountNumber;
+    string accountHolderName;
+    double balance;
+
+    void deposit(double amount) {
+        balance += amount;
+    }
+
+    void withdraw(double amount) {
+        if (amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    void display() {
+        cout << "Account Number: " << accountNumber << endl;
+        cout << "Account Holder: " << accountHolderName << endl;
+        cout << "Balance: " << balance << endl;
+    }
+};
+
 int main() {
-    int num1, num2, product;
-    cin >> num1 >> num2;
-    product = num1 * num2;
-    int digitCount = (product == 0) ? 1 : static_cast<int>(log10(abs(product)) + 1);
-    cout << "Product - " << product << endl;
-    cout << "Count of digits - " << digitCount << endl;
+    BankAccount account;
+    account.accountNumber = 12345;
+    account.accountHolderName = "John Doe";
+    account.balance = 1000.0;
+
+    account.deposit(500.0);
+    account.withdraw(200.0);
+    account.display();
+
     return 0;
 }
